@@ -30,13 +30,13 @@ fetch("https://api.coingecko.com/api/v3/coins/ethereum")
     })
     .catch(err => console.error(err))
 
-//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString#parameters
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString#parameters//
 
 function getCurrentTime() {
-        const date = new Date()
-        document.getElementById("time").textContent = date.toLocaleTimeString("en-us", {timeStyle: "short"})
+    const date = new Date()
+    document.querySelector(".time").textContent = date.toLocaleTimeString("en-us", {timeStyle: "short"})
 }
-    
+
 setInterval(getCurrentTime, 1000)
 
 
