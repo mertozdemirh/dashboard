@@ -52,5 +52,16 @@ navigator.geolocation.getCurrentPosition(position =>
                 }
                 return res.json()
             })
-            .then(data => console.log(data))
+            .then(data => {
+
+                //https://openweathermap.org/weather-conditions//
+                const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+                document.getElementById("icon-degree").innerHTML = `
+                <img class="weather-icon-degree" src=${iconUrl} />
+                <p class="weather-icon-degree">${Math.round(data.main.temp)}º</p>
+                
+            `
+            document.getElementById("city").innerHTML =`<span id="weather-city">${data.name}</span>`
+            })
+            .catch(err=>console.error(err))
     )
