@@ -30,6 +30,8 @@ fetch("https://api.coingecko.com/api/v3/coins/ethereum")
     })
     .catch(err => console.error(err))
 
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString#parameters
+
 function getCurrentTime() {
         const date = new Date()
         document.getElementById("time").textContent = date.toLocaleTimeString("en-us", {timeStyle: "short"})
@@ -37,3 +39,18 @@ function getCurrentTime() {
     
 setInterval(getCurrentTime, 1000)
 
+
+//https://openweathermap.org/current#geo
+//https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API#getting_the_current_position//
+//https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+
+navigator.geolocation.getCurrentPosition(position =>
+        fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric`)
+            .then(res => {
+                if(!res.ok){
+                    throw Error("Weather data not available")
+                }
+                return res.json()
+            })
+            .then(data => console.log(data))
+    )
